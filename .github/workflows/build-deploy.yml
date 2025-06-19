@@ -760,10 +760,10 @@ jobs:
             Enable-AzStorageStaticWebsite -Context $context -IndexDocument 'index.html' -ErrorDocument404Path 'index.html'
 
       - name: Upload UI to storage account
-        run: |
-          az storage blob sync \
+        run: |          
+            az storage blob upload-batch \
             --account-name '${{ env.STORAGE_ACCOUNTNAME_UI }}' \
-            --container '$web' \
+            --destination '$web' \
             --source 'website' \
             --auth-mode login
 
